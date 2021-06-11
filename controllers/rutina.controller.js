@@ -17,7 +17,7 @@ rutinaCtrl.createRutina = async (req, res) => {
  await plan.save();
  res.json({
         'status': '1',
-        'msg': 'rutina guardada.'
+        'msg': 'Rutina guardada.'
         })
  } catch (error) {
        console.log(error);

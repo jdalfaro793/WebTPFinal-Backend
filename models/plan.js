@@ -1,15 +1,12 @@
 const mongoose = require("mongoose");
 const {Schema} = mongoose;
-const Rutina    = require('./rutina');
 
 const PlanSchema = new Schema({
 
-plan_tipo: {type: String, required: true},
-plan_descripcion: {type:String, required:true},
-
-plan_rutina:{type: Schema.Types.ObjectId, ref:Rutina, required:true},  //objeto de  tipo rutina, debe estar creado previamente
-
-plan_monto: {type: Number, required:true},
+plan_nombre:        {type: String, required: true},
+plan_descripcion:   {type: String, required:true},
+plan_precio:        {type: Number, required:true},
+plan_dias:          {type: Number, required:true},
 
 
 });

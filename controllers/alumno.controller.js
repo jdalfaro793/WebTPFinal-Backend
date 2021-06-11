@@ -9,10 +9,6 @@ alumnoCtrl.getAlumnos = async (req, res) => {
 }
 
 
-
-
-
-
 alumnoCtrl.createAlumno = async (req, res) => {
  var alumno = new Alumno(req.body);
  try {
@@ -20,13 +16,15 @@ alumnoCtrl.createAlumno = async (req, res) => {
  await alumno.save();
  res.json({
         'status': '1',
-        'msg': 'Sector guardado.'
+        'msg': 'Alumno guardado.'
         })
  } catch (error) {
+       console.log("Error:");
        console.log(error);
 
  res.json({
  'status': '0',
+ 
  'msg': 'Error procesando operacion.'})
 
 }
