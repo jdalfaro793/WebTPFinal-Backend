@@ -8,7 +8,8 @@ const RutinaPersonalizadaSchema = new Schema({
 rutper_rutina:      {type: Schema.Types.ObjectId, ref:rutina, required:true} ,//objeto de tipo rutina por id, debe estar creado previamente
 rutper_repeticion:  {type: [Number], required: true }, //declaracion de arrays de numeros
 rutper_serie:       {type: [Number], required: true },
-rutper_peso:        {type: [Number], required: true }
+rutper_peso:        {type: [Number], required: true },
+rutper_dia:         {type: String,required: true    }
 
 });
 //exporto objeto para que pueda ser usado en otros lugares

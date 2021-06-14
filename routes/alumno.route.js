@@ -7,5 +7,8 @@ const router = express.Router();
 router.get('/', alumnoCtrl.getAlumnos);
 router.post('/', alumnoCtrl.createAlumno);
 
+router.post('/:id/addcuota', alumnoCtrl.registrarCuota);
+router.post('/:id/adduser', alumnoCtrl.generarUsuario);
+
 //exportamos el modulo de rutas
 module.exports = router;
