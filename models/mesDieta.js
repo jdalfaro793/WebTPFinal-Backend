@@ -3,6 +3,7 @@ const Dieta = require("./dieta");
 const {Schema} = mongoose;
 const MesDietaSchema = new Schema({
 
+mes: {type: Number, required: true},
 planSemanal: [{type: Schema.Types.ObjectId, ref: Dieta, required:true}]
 
 });

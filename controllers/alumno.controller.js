@@ -1,110 +1,61 @@
-const {mongoose} = require("mongoose");
-
 const Alumno = require("../models/alumno");
-const Cuota = require("../models/cuota");
-const Usuario = require("../models/usuario");
-const usuarioCtrl = require("./usuario.controller");
-
 const alumnoCtrl = {};
 
-alumnoCtrl.getAlumnos = async (req, res) => {
+alumnoCtrl.getAlumnos= async (req, res) => {
   var alumnos = await Alumno.find();
   res.json(alumnos);
-};
+}
 
-alumnoCtrl.createAlumno = async (req, res) => {
+alumnoCtrl.addAlumno = async (req, res) => {
   var alumno = new Alumno(req.body);
   try {
-    console.log(req);
-    await alumno.save();
-    res.json({
-      status: "1",
-      msg: "Alumno guardado.",
-    });
-  } catch (error) {
-    console.log("Error:");
-    console.log(error);
-
-    res.json({
-      status: "0",
-
-      msg: "Error procesando operacion.",
-    });
-  }
-};
-
-/**
- * Metodo para dar de alta una cuota dentro de un alumno, aislando todo el objeto alumno y recuperando solo el alumno para dar el alta de la cuota
- * Ejemplo del video de contactos
- * id alu, id usu
- */
-
-alumnoCtrl.generarUsuario = async (req, res) => {
-  const alumno = Alumno.findById(req.params.id);
-  const criteria = {
-    usu_username: req.body.usu_username,
-  };
-  try {
-    if (alumno.alu_usuario == undefined) {
-      Usuario.findOne(criteria, function (err, user) {
-        if (!user) {
-          const usuario = new Usuario(req.body);
-          usuario.save();
-
-         const  vusuario = Usuario.findById(usuario._id);
-         alumno.alu_usuario = vusuario;
-             Alumno.updateOne({ _id: req.params.id }, alumno);
-             res.json({
-              status: "1",
-
-            });
-
-        } else {
-          res.json({
-            status: "0",
-            msg: "El usuario ya existe",
-          });
-        }
-      });
-    } else {
+      await alumno.save();
       res.json({
-        status: "0",
-        msg: "Error ya posee usuario.",
-      });
-    }
+          'status': '1',
+          'msg': 'Alumno guardado.'
+      })
   } catch (error) {
-    console.log(error);
-    res.json({
-      status: "0",
-      msg: "Error inesperado revise la consola.",
-    });
+      res.json({
+          'status': '0',
+          'msg': 'Error procesando operacion.'
+      })
   }
-};
+}
 
-
-
-/**
- * Metodo para dar de alta una cuota dentro de un alumno, aislando todo el objeto alumno y recuperando solo el alumno para dar el alta de la cuota
- * Ejemplo del video de contactos
- */
-alumnoCtrl.registrarCuota = async (req, res) => {
-  const cuota = new Cuota(req.body);
+alumnoCtrl.getAlumno = async (req, res) => {
   const alumno = await Alumno.findById(req.params.id);
-  alumno.alu_cuota.push(cuota);
+  res.json(alumno);
+}
 
+alumnoCtrl.editAlumno = async (req, res) => {
+  const vAlumno = new Alumno(req.body);
   try {
-    await Alumno.updateOne({ _id: req.params.id }, alumno);
-    res.json({
-      status: "1",
-      msg: "Cuota guardada.",
-    });
+      await Alumno.updateOne({_id: req.body._id}, vAlumno);
+      res.json({
+          'status': '1',
+          'msg': 'Alumno updated'
+      })
+  } catch (error) {
+  res.json({
+      'status': '0',
+      'msg': 'Error procesando la operacion'
+  })
+  }
+}
+
+alumnoCtrl.deleteAlumno = async (req, res)=>{
+  try {
+      await Alumno.deleteOne({_id: req.params.id});
+      res.json({
+          status: '1',
+          msg: 'Alumno removed'
+    })
   } catch (error) {
     res.json({
-      status: "0",
-
-      msg: "Error procesando operacion.",
-    });
+        'status': '0',
+        'msg': 'Error procesando la operacion'
+    })
   }
-};
+}
 
 module.exports = alumnoCtrl;

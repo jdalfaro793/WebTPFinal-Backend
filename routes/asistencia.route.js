@@ -4,8 +4,11 @@ const asistenciaCtrl = require('./../controllers/asistencia.controller');
 const express = require('express');
 const router = express.Router();
 //definimos las rutas para la gestion de agente
+router.get('/:id', asistenciaCtrl.getAsistencia);
 router.get('/', asistenciaCtrl.getAsistencias);
-router.post('/', asistenciaCtrl.createAsistencia);
+router.post('/', asistenciaCtrl.addAsistencia);
+router.delete('/:id', asistenciaCtrl.deleteAsistencia);
+router.put('/:id', asistenciaCtrl.editAsistencia);
 
 
 //exportamos el modulo de rutas

@@ -4,8 +4,11 @@ const rutinaCtrl = require('./../controllers/rutina.controller');
 const express = require('express');
 const router = express.Router();
 //definimos las rutas para la gestion de agente
+router.get('/:id', rutinaCtrl.getRutina);
 router.get('/', rutinaCtrl.getRutinas);
-router.post('/', rutinaCtrl.createRutina);
+router.post('/', rutinaCtrl.addRutina);
+router.delete('/:id', rutinaCtrl.deleteRutina);
+router.put('/:id', rutinaCtrl.editRutina);
 
 //exportamos el modulo de rutas
 module.exports = router;

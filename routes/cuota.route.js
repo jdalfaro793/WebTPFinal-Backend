@@ -4,8 +4,11 @@ const cuotaCtrl = require('./../controllers/cuota.controller');
 const express = require('express');
 const router = express.Router();
 //definimos las rutas para la gestion de agente
+router.get('/:id', cuotaCtrl.getCuota);
 router.get('/', cuotaCtrl.getCuotas);
-router.post('/', cuotaCtrl.createCuota);
+router.post('/', cuotaCtrl.addCuota);
+router.delete('/:id', cuotaCtrl.deleteCuota);
+router.put('/:id', cuotaCtrl.editCuota);
 
 
 //exportamos el modulo de rutas
