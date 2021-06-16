@@ -5,6 +5,7 @@ const express = require('express');
 const router = express.Router();
 //definimos las rutas para la gestion de agente
 router.get('/:id', asistenciaCtrl.getAsistencia);
+router.get('/get/:id',asistenciaCtrl.getAsistenciaByAlumno); //busqueda de asistencia por id de alumno
 router.get('/', asistenciaCtrl.getAsistencias);
 router.post('/', asistenciaCtrl.addAsistencia);
 router.delete('/:id', asistenciaCtrl.deleteAsistencia);

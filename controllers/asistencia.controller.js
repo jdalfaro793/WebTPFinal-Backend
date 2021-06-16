@@ -58,4 +58,13 @@ asistenciaCtrl.deleteAsistencia = async (req, res)=>{
   }
 }
 
+//Metodo que filtra las asistencias segun el id del alumno
+asistenciaCtrl.getAsistenciaByAlumno = async (req, res) => {
+  const asistenciasEncontradas = await Asistencia.find({ alumno : req.params.id});
+  res.json(asistenciasEncontradas);
+};
+
+
+
+
 module.exports = asistenciaCtrl;
