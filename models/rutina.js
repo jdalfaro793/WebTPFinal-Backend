@@ -4,8 +4,8 @@ const ejercicio = require('./ejercicio');
 
 const RutinaSchema = new Schema({
 
-rut_nombre:     {type: String, required: true},
-rut_ejercicios: [{type: Schema.Types.ObjectId,ref:ejercicio,required:true}] 
+    nombre: {type: String, required: true},
+    ejercicios: [{type: Schema.Types.ObjectId,ref:ejercicio,required:true}] 
 
 
 });

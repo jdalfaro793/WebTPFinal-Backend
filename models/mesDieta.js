@@ -3,8 +3,9 @@ const Dieta = require("./dieta");
 const {Schema} = mongoose;
 const MesDietaSchema = new Schema({
 
-mes: {type: Number, required: true},
-planSemanal: [{type: Schema.Types.ObjectId, ref: Dieta, required:true}]
+    mes: {type: Number, required: true},
+    planSemanal: [{type: Schema.Types.ObjectId, ref: Dieta, required:true}],
+    objetivo: {type: String, required: true}
 
 });
 //exporto objeto para que pueda ser usado en otros lugares

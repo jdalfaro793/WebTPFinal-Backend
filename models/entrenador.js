@@ -5,11 +5,11 @@ const {Schema} = mongoose;
 
 const EntrenadorSchema = new Schema({
 
-ent_apellido:           {type: String, required: true},
-ent_nombre:             {type: String, required: true},
-ent_dni:                {type: String, required: true},
-ent_celular:            {type: String, required: true},
-ent_usuario:            {type: Schema.Types.ObjectId,ref: usuario}   //usuario vinculado al alumno por id
+    apellido: {type: String, required: true},
+    nombre: {type: String, required: true},
+    dni: {type: String, required: true},
+    celular: {type: String, required: true},
+    usuario: {type: Schema.Types.ObjectId,ref: usuario}   //usuario vinculado al alumno por id
 
 
 });

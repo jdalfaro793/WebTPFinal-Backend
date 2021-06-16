@@ -3,10 +3,10 @@ const {Schema} = mongoose;
 
 const PlanSchema = new Schema({
 
-plan_nombre:        {type: String, required: true},
-plan_descripcion:   {type: String, required:true},
-plan_precio:        {type: Number, required:true},
-plan_dias:          {type: Number, required:true},
+    nombre: {type: String, required: true},
+    descripcion: {type: String, required:true},
+    precio: {type: Number, required:true},
+    dias: {type: Number, required:true},
 
 
 });
