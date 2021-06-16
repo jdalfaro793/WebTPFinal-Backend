@@ -7,19 +7,17 @@ const {Schema} = mongoose;
 
 const AlumnoSchema = new Schema({
 
-alu_apellido:           {type: String, required: true},
-alu_nombre:             {type: String, required: true},
-alu_dni:                {type: String, required: true},
-alu_fecha_nacimiento:   {type: Date, required: true},
-alu_celular:            {type: String, required: true},
-alu_domicilio:          {type: String, required: true},
-alu_email:              {type: String, required: true},
-alu_fechaInicio:        {type: Date, required: true},
-
-alu_plan:               {type: Schema.Types.ObjectId, ref:plan, required:true},  //objeto de tipo plan , debe estar creado previamente
-alu_rutinas:            [{type: rutinaPersonalizada.schema, required: true}],
-
-alu_usuario:            {type: Schema.Types.ObjectId,ref: usuario}   //usuario vinculado al alumno por id
+    apellido: {type: String, required: true},
+    nombre: {type: String, required: true},
+    dni: {type: String, required: true},
+    fecha_nacimiento: {type: Date, required: true},
+    celular: {type: String, required: true},
+    domicilio: {type: String, required: true},
+    email: {type: String, required: true},
+    fecha_inicio: {type: Date, required: true},
+    plan: {type: Schema.Types.ObjectId, ref:plan, required:true},  //objeto de tipo plan , debe estar creado previamente
+    rutinas: [{type: rutinaPersonalizada.schema, required: true}],
+    usuario: {type: Schema.Types.ObjectId,ref: usuario}   //usuario vinculado al alumno por id
 
 
 });
