@@ -2,7 +2,7 @@ const Asistencia = require("../models/asistencia");
 const asistenciaCtrl = {};
 
 asistenciaCtrl.getAsistencias = async (req, res) => {
-  var asistencias = await Asistencia.find();
+  var asistencias = await Asistencia.find().populate("alumno");
   res.json(asistencias);
 }
 
@@ -60,8 +60,15 @@ asistenciaCtrl.deleteAsistencia = async (req, res)=>{
 
 //Metodo que filtra las asistencias segun el id del alumno
 asistenciaCtrl.getAsistenciaByAlumno = async (req, res) => {
-  const asistenciasEncontradas = await Asistencia.find({ alumno : req.params.id});
-  res.json(asistenciasEncontradas);
+  try {
+    const asistenciasEncontradas = await Asistencia.find({alumno: req.params.id,}).populate("alumno");
+    res.json(asistenciasEncontradas);
+  } catch (error) {
+    res.json({
+      status: "0",
+      msg: "Error procesando operacion.",
+    });
+  }
 };
 
 

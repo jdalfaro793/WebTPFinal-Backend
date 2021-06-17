@@ -2,7 +2,16 @@ const Cuota = require("../models/cuota");
 const cuotaCtrl = {};
 
 cuotaCtrl.getCuotas = async (req, res) => {
-  var cuotas = await Cuota.find();
+  var cuotas = await Cuota.find().populate("alumno");
+  res.json(cuotas);
+}
+
+cuotaCtrl.getCuotasFilter = async (req, res) => {
+  let criterios = { $or: [{ apellido: "Rambo" }, { nombre: "Pugg" }, { age: 2 }] }
+
+
+
+  let cuotas = await Cuota.find(criterios).populate('alumno').exec();
   res.json(cuotas);
 }
 
