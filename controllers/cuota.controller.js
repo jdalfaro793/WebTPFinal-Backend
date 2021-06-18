@@ -1,17 +1,91 @@
 const Cuota = require("../models/cuota");
+const Alumno = require('../models/alumno')
 const cuotaCtrl = {};
 
 cuotaCtrl.getCuotas = async (req, res) => {
-  var cuotas = await Cuota.find().populate("alumno");
+  //let criterios = { $or: [{ modo_pago: {$regex : 'merc', $options: 'i'} }, { monto: {$gt:2000}}] };
+
+  let criterios = {}
+  let criteriosAlu = {}
+
+  //variables para hacer pruebas
+  modo_pago = '';
+  monto = '';
+
+  apellido = '';
+  nombre = '';
+
+  //búsqueda por medio de pago, en modo regex
+  if(modo_pago != '') 
+    criterios.modo_pago = {$regex : modo_pago, $options: 'i'}
+  //búsqueda por el monto menor o igual al ingresado
+  if(monto != '')
+    criterios.monto = {$lte: monto };
+
+  /*
+  ----------- Búsquedas por APellido o Nombre de un almuno
+  */
+  if(apellido != '' || nombre != ''){
+    let queryAlumno = {}; //instancia de query para alumno
+
+    //asinganción de query correspondiente
+    if(apellido != '')  
+      queryAlumno.apellido = {$regex : apellido, $options: 'i'};
+    if(nombre != '')
+      queryAlumno.nombre = {$regex : nombre, $options: 'i'}; 
+
+    let alumnos = await Alumno.find(queryAlumno);
+    //console.log(alumnos);
+    let idAlumnos = []; //instancia de un array para almacenar id
+    alumnos.forEach(element => {  //añado los _id de los alumnos encontrados a un array
+      idAlumnos.push(element._id)
+    })
+    //console.log(idAlumnos)
+    criterios.alumno = idAlumnos; //agrego el ide de los alumnos encontrados al query principal
+  }
+
+  /*
+  if(apellido != '')
+    criteriosAlu.apellido = {$regex : apellido, $options: 'i'};
+  if(nombre != '')
+    criteriosAlu.nombre = {$regex : nombre, $options: 'i'}; 
+
+  //indico que me realice la búsqueda por las coincidencias de usuarios
+  if(criteriosAlu.apellido != undefined || criteriosAlu.nombre != undefined){
+    let alumnos = await Alumno.find(criteriosAlu);
+    //console.log(alumnos);
+    let idAlumnos = [];
+    alumnos.forEach(element => {
+      idAlumnos.push(element._id)
+    })
+    //console.log(idAlumnos)
+    criterios.alumno = idAlumnos;
+  }
+  */
+  
+  console.log(criterios)
+
+  //guardar resultado de la búsqueda
+  let cuotas = await Cuota.find(criterios).populate('alumno');
   res.json(cuotas);
 }
 
 cuotaCtrl.getCuotasFilter = async (req, res) => {
-  let criterios = { $or: [{ apellido: "Rambo" }, { nombre: "Pugg" }, { age: 2 }] }
+  let criterios = { $or: [{ modo_pago: {$regex : 'efec', $options: 'i'} }, { monto: {$regex : 10} }] }
+  /*
+  let nombre = 'mar'
 
+  let query = { $or: 
+    [ 
+      {'alumno.nombre': {$regex : vari, $options: 'i'}}, 
+      {'alumno.apellido': {$regex : vari, $options: 'i'}} 
+    ] 
+  }
 
 
   let cuotas = await Cuota.find(criterios).populate('alumno').exec();
+  let cu = await Cuota.find(query).populate('alumno') */
+  let cuotas = await Cuota.find(criterios).populate('alumno');
   res.json(cuotas);
 }
 
