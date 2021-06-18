@@ -58,4 +58,19 @@ const rutinaCtrl = {}
    }
   }
   
+//Metodo que filtra las rutinas segun el id del alumno
+rutinaCtrl.getRutinasByAlumno = async (req, res) => {
+    try {
+      const rutinasEncontradas = await Rutina.find({alumno: req.params.id,}).populate("ejercicio");
+      console.log(rutinasEncontradas);
+      res.json(rutinasEncontradas);
+    } catch (error) {
+      res.json({
+        status: "0",
+        msg: "Error procesando operacion.",
+      });
+    }
+  };
+
+
   module.exports = rutinaCtrl;

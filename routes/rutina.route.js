@@ -5,6 +5,7 @@ const express = require('express');
 const router = express.Router();
 //definimos las rutas para la gestion de agente
 router.get('/:id', rutinaCtrl.getRutina);
+router.get('/getRutinas/:id', rutinaCtrl.getRutinasByAlumno);
 router.get('/', rutinaCtrl.getRutinas);
 router.post('/', rutinaCtrl.addRutina);
 router.delete('/:id', rutinaCtrl.deleteRutina);
