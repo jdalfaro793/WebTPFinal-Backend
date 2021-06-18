@@ -2,7 +2,7 @@ const Alumno = require("../models/alumno");
 const alumnoCtrl = {};
 
 alumnoCtrl.getAlumnos= async (req, res) => {
-  var alumnos = await Alumno.find();
+  var alumnos = await Alumno.find().populate("plan").populate("usuario");
   res.json(alumnos);
 }
 
