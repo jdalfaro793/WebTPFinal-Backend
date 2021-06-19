@@ -13,6 +13,7 @@ cuotaCtrl.getCuotas = async (req, res) => {
   if(req.query.monto != '0')
     criterios.monto = {$lte: Number(req.query.monto) };
 
+
   /*
   ----------- Búsquedas por APellido o Nombre de un almuno
   */
@@ -129,6 +130,19 @@ cuotaCtrl.deleteCuota = async (req, res)=>{
         'status': '0',
         'msg': 'Error procesando la operacion'
     })
+  }
+}
+
+cuotaCtrl.getCuotaByAlumno = async (req, res) => {
+
+  try {
+    const cuotasEncontradas = await Cuota.find({alumno : req.params.id});
+    res.json(cuotasEncontradas);
+  } catch (error) {
+    res.json({
+      status: "0",
+      msg: "Error procesando operacion.",
+    });
   }
 }
 

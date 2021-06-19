@@ -9,7 +9,8 @@ router.get('/', cuotaCtrl.getCuotas);
 router.post('/', cuotaCtrl.addCuota);
 router.delete('/:id', cuotaCtrl.deleteCuota);
 router.put('/:id', cuotaCtrl.editCuota);
-router.get('/', cuotaCtrl.getCuotasFilter)
+router.get('/', cuotaCtrl.getCuotasFilter);
+router.get('/alumno/:id', cuotaCtrl.getCuotaByAlumno)
 
 
 //exportamos el modulo de rutas
