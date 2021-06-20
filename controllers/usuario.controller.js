@@ -57,6 +57,15 @@ usuarioCtrl.getUsuario = async (req, res) => {
   res.json(usuario);
 }
 
+usuarioCtrl.getUsuarioByUserAndPassword = async (req, res) =>{
+  const usuario = await Usuario.findOne({username:req.params.username, password:req.params.password});
+  res.json(usuario);
+}
+usuarioCtrl.getByUsername = async (req, res) =>{
+  const usuario = await Usuario.find({username:req.params.username});
+  res.json(usuario);
+}
+
 usuarioCtrl.editUsuario = async (req, res) => {
   const vusuario = new Usuario(req.body);
   try {
