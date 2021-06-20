@@ -73,4 +73,26 @@ rutinaCtrl.getRutinasByAlumno = async (req, res) => {
   };
 
 
+
+
+  rutinaCtrl.getRutinasByAlumnoYMes = async (req, res)=>{
+
+
+    try {
+        const logsEncontrados = await Rutina.find({ alumno: req.params.id, mes:req.params.mes}).populate("ejercicio");
+        res.json(logsEncontrados);
+      } catch (error) {
+        res.json({
+          status: "0",
+          msg: "Error procesando operacion.",
+        });
+      }
+    };
+  
+
+
+
+
+
+
   module.exports = rutinaCtrl;

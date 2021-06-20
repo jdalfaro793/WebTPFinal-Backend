@@ -23,7 +23,7 @@ alumnoCtrl.addAlumno = async (req, res) => {
 }
 
 alumnoCtrl.getAlumno = async (req, res) => {
-  const alumno = await Alumno.findById(req.params.id);
+  const alumno = await Alumno.findById(req.params.id).populate("plan").populate("usuario");
   res.json(alumno);
 }
 
