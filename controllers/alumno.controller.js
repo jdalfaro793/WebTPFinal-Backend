@@ -1,10 +1,16 @@
 const Alumno = require("../models/alumno");
 const alumnoCtrl = {};
 
-alumnoCtrl.getAlumnos= async (req, res) => {
-  var alumnos = await Alumno.find().populate("plan").populate("usuario");
+alumnoCtrl.getAlumnos = async (req, res) => {
+  let criterios = {};
+  if(req.query.apellido != '') 
+    criterios.apellido = { $regex: req.query.apellido, $options: "i" }
+  if(req.query.dni != '')
+    criterios.dni = { $regex: req.query.dni, $options: "i" }
+
+  let alumnos = await Alumno.find(criterios).populate("plan").populate("usuario");
   res.json(alumnos);
-}
+};
 
 alumnoCtrl.addAlumno = async (req, res) => {
   var alumno = new Alumno(req.body);
