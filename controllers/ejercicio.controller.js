@@ -3,7 +3,10 @@ const ejercicioCtrl = {};
 
 
 ejercicioCtrl.getEjercicios = async (req, res) => {
-  var ejercicios = await Ejercicio.find();
+  let criterios = {};
+  if(req.query.nombre != '') 
+    criterios.nombre = { $regex: req.query.nombre, $options: "i" }
+  var ejercicios = await Ejercicio.find(criterios);
   res.json(ejercicios);
 }
 
