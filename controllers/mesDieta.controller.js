@@ -7,6 +7,7 @@ mesDietaCtrl.getMesDietas = async (req, res) => {
 }
 
 mesDietaCtrl.addMesDieta = async (req, res) => {
+    console.log('entro',req.body)
     var mesDieta = new MesDieta(req.body);
     try {
         await mesDieta.save();
@@ -15,6 +16,7 @@ mesDietaCtrl.addMesDieta = async (req, res) => {
             'msg': 'MesDieta guardada.'
         })
     } catch (error) {
+        console.log(error);
         res.json({
             'status': '0',
             'msg': 'Error procesando operacion.'
