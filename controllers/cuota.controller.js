@@ -136,7 +136,7 @@ cuotaCtrl.deleteCuota = async (req, res)=>{
 cuotaCtrl.getCuotaByAlumno = async (req, res) => {
 
   try {
-    const cuotasEncontradas = await Cuota.find({alumno : req.params.id});
+    const cuotasEncontradas = await Cuota.find({alumno : req.params.id}).populate("alumno");
     res.json(cuotasEncontradas);
   } catch (error) {
     res.json({
