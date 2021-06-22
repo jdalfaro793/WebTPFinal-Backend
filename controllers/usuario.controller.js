@@ -27,7 +27,9 @@ usuarioCtrl.loginUsuario = async (req, res) => {
         status: 1,
         msg: "success",
         username: user.username,
-        rol: user.rol
+        rol: user.rol,
+        _id: user._id,
+        state: user.state
       });
     }
   })
