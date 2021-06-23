@@ -18,6 +18,8 @@ app.use('/api/cuota', require('./routes/cuota.route'));
 app.use('/api/registroDieta', require('./routes/registroDieta.route'));
 app.use('/api/dieta', require('./routes/dieta.route'));
 app.use('/api/mesDieta', require('./routes/mesDieta.route'));
+app.use('/api/publicacion', require('./routes/publicacion.route'));
+
 
 
 //app.use('/api/sector, require('./routes/sector.route'));
