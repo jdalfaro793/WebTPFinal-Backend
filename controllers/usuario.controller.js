@@ -1,5 +1,6 @@
 const Usuario = require("./../models/usuario");
 const usuarioCtrl = {};
+const jwt = require('jsonwebtoken');
 
 usuarioCtrl.loginUsuario = async (req, res) => {
   //en req.body se espera que vengan las credenciales de login
@@ -23,13 +24,15 @@ usuarioCtrl.loginUsuario = async (req, res) => {
         msg: "not found"
       })
     } else {
+      const unToken = jwt.sign({id: user._id}, "secretkey");
       res.json({
         status: 1,
         msg: "success",
         username: user.username,
         rol: user.rol,
-        _id: user._id,
-        state: user.state
+        id: user._id,
+        state: user.state,
+        token: unToken
       });
     }
   })
