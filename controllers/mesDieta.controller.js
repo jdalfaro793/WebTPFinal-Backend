@@ -2,7 +2,15 @@ const MesDieta = require('../models/mesDieta');
 const mesDietaCtrl = {}
 
 mesDietaCtrl.getMesDietas = async (req, res) => {
-    var mesDieta = await MesDieta.find();
+
+    let criterios = {};
+
+    if(req.query.objetivo != '')
+        criterios.objetivo = {$regex : req.query.objetivo, $options: 'i'};
+    if(req.query.mes != '')
+        criterios.mes = req.query.mes;
+
+    var mesDieta = await MesDieta.find(criterios);
     res.json(mesDieta);
 }
 
@@ -59,5 +67,6 @@ mesDietaCtrl.deleteMesDieta = async (req, res)=>{
     })
  }
 }
+
 
 module.exports = mesDietaCtrl;
