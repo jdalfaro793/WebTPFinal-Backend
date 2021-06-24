@@ -6,7 +6,7 @@ const express = require('express');
 const router = express.Router();
 //definimos las rutas para la gestion de agente
 router.get('/:id', authCtrl.verifyToken, cuotaCtrl.getCuota);
-router.get('/', cuotaCtrl.getCuotas);
+router.get('/', authCtrl.verifyToken, cuotaCtrl.getCuotas);
 router.post('/', authCtrl.verifyToken, cuotaCtrl.addCuota);
 router.delete('/:id', authCtrl.verifyToken, cuotaCtrl.deleteCuota);
 router.put('/:id', authCtrl.verifyToken, cuotaCtrl.editCuota);

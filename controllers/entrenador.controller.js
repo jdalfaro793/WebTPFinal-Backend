@@ -5,7 +5,10 @@ entrenadorCtrl.getEntrenadores = async (req, res) => {
   var entrenadores = await Entrenador.find();
   res.json(entrenadores);
 }
-
+entrenadorCtrl.getEntrenadorByUserId = async (req, res) => {
+  var entrenador = await Entrenador.findOne({usuario:req.params.usuario});
+  res.json(entrenador);
+}
 entrenadorCtrl.addEntrenador = async (req, res) => {
   var entrenador = new Entrenador(req.body);
   try {
