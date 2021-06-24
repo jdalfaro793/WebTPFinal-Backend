@@ -58,4 +58,12 @@ registroDietaCtrl.deleteRegistroDieta = async (req, res)=>{
  }
 }
 
+registroDietaCtrl.getRegistroDietaByAlumno = async (req, res) => {
+    console.log(req.params);
+    const registros = await RegistroDieta.find({
+        alumno : req.params.id
+    });
+    res.json(registros);
+}
+
 module.exports = registroDietaCtrl;
