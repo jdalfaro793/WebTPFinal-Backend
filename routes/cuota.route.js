@@ -5,6 +5,7 @@ const authCtrl = require('../controllers/auth.controller');
 const express = require('express');
 const router = express.Router();
 //definimos las rutas para la gestion de agente
+router.get('/allCuotas', authCtrl.verifyToken, cuotaCtrl.getAllCuotas);
 router.get('/:id', authCtrl.verifyToken, cuotaCtrl.getCuota);
 router.get('/', authCtrl.verifyToken, cuotaCtrl.getCuotas);
 router.post('/', authCtrl.verifyToken, cuotaCtrl.addCuota);

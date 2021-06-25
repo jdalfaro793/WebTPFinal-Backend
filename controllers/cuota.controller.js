@@ -2,6 +2,10 @@ const Cuota = require("../models/cuota");
 const Alumno = require('../models/alumno')
 const cuotaCtrl = {};
 
+cuotaCtrl.getAllCuotas = async (req,res) =>{
+  const cuotas = await Cuota.find();
+  res.json(cuotas);
+}
 cuotaCtrl.getCuotas = async (req, res) => {
   let criterios = {}
 
