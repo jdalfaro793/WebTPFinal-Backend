@@ -17,7 +17,8 @@ const AlumnoSchema = new Schema({
     plan: {type: Schema.Types.ObjectId, ref:plan, required:true},  //objeto de tipo plan , debe estar creado previamente
     usuario: {type: Schema.Types.ObjectId,ref: usuario},   //usuario vinculado al alumno por id
     mes: {type: Number, required: true},
-    ultimaRutinaMes: {type: Number, required: true}
+    ultimaRutinaMes: {type: Number, required: true},
+    ultimoPlanMes: {type: Number, required: true}
 
 });
 
