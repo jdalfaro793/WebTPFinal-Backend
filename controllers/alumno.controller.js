@@ -8,8 +8,6 @@ alumnoCtrl.getAlumnos = async (req, res) => {
   if(req.query.dni != '')
     criterios.dni = { $regex: req.query.dni, $options: "i" }
 
-  console.log("req:");
-  console.log(req.query);
   let alumnos = await Alumno.find(criterios).populate("plan").populate("usuario");
   res.json(alumnos);
 };

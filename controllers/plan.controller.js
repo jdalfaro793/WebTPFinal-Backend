@@ -2,11 +2,20 @@ const Plan = require('../models/plan');
 const planCtrl = {}
 
 planCtrl.getPlanes = async (req, res) => {
-    var planes = await Plan.find();
+
+    var criterios = {};
+
+    if(req.query.nombre != '')
+        criterios.nombre = {$regex : req.query.nombre, $options: 'i'};
+    if(req.query.dias != '')
+        criterios.dias = req.query.dias;
+
+    var planes = await Plan.find(criterios);
     res.json(planes);
 }
 
 planCtrl.addPlan = async (req, res) => {
+
     var plan = new Plan(req.body);
     try {
         await plan.save();

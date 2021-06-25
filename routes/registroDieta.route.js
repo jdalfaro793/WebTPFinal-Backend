@@ -10,6 +10,6 @@ router.get('/', authCtrl.verifyToken, registroDietaCtrl.getRegistrosDieta);
 router.post('/', authCtrl.verifyToken, registroDietaCtrl.addRegistroDieta);
 router.delete('/:id', authCtrl.verifyToken, registroDietaCtrl.deleteRegistroDieta);
 router.put('/:id', authCtrl.verifyToken, registroDietaCtrl.editRegistroDieta);
-router.get('/alumno/:id', registroDietaCtrl.getRegistroDietaByAlumno)
+router.get('/alumno/:id', authCtrl.verifyToken, registroDietaCtrl.getRegistroDietaByAlumno)
 
 module.exports = router;

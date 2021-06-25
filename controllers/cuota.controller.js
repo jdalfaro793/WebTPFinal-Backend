@@ -3,7 +3,6 @@ const Alumno = require('../models/alumno')
 const cuotaCtrl = {};
 
 cuotaCtrl.getCuotas = async (req, res) => {
-  //console.log(req.query)
   let criterios = {}
 
   //búsqueda por medio de pago, en modo regex
@@ -27,7 +26,6 @@ cuotaCtrl.getCuotas = async (req, res) => {
       queryAlumno.nombre = {$regex : req.query.nombre, $options: 'i'}; 
 
     let alumnos = await Alumno.find(queryAlumno);
-    //console.log(alumnos);
     let idAlumnos = []; //instancia de un array para almacenar id
     alumnos.forEach(element => {  //añado los _id de los alumnos encontrados a un array
       idAlumnos.push(element._id)
