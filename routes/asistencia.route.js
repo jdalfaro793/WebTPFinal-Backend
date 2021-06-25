@@ -5,9 +5,11 @@ const authCtrl = require('../controllers/auth.controller');
 const express = require('express');
 const router = express.Router();
 //definimos las rutas para la gestion de agente
+router.get('/all', authCtrl.verifyToken, asistenciaCtrl.getAll);
 router.get('/:id', authCtrl.verifyToken,  asistenciaCtrl.getAsistencia);
 router.get('/get/:id', authCtrl.verifyToken, asistenciaCtrl.getAsistenciaByAlumno); //busqueda de asistencia por id de alumno
 router.get('/', authCtrl.verifyToken, asistenciaCtrl.getAsistencias);
+
 router.post('/', authCtrl.verifyToken, asistenciaCtrl.addAsistencia);
 router.delete('/:id', authCtrl.verifyToken, asistenciaCtrl.deleteAsistencia);
 router.put('/:id', authCtrl.verifyToken, asistenciaCtrl.editAsistencia);

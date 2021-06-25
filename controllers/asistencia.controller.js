@@ -5,7 +5,10 @@ asistenciaCtrl.getAsistencias = async (req, res) => {
   var asistencias = await Asistencia.find().populate("alumno");
   res.json(asistencias);
 }
-
+asistenciaCtrl.getAll = async (req, res) => {
+  var asistencias = await Asistencia.find();
+  res.json(asistencias);
+}
 asistenciaCtrl.addAsistencia = async (req, res) => {
   var asistencia = new Asistencia(req.body);
   try {
