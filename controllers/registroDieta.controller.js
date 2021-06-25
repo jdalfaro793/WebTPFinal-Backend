@@ -62,7 +62,7 @@ registroDietaCtrl.getRegistroDietaByAlumno = async (req, res) => {
     console.log(req.params);
     const registros = await RegistroDieta.find({
         alumno : req.params.id
-    });
+    }).populate('alumno').populate('plan_dieta');
     res.json(registros);
 }
 
