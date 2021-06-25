@@ -14,6 +14,11 @@ planCtrl.getPlanes = async (req, res) => {
     res.json(planes);
 }
 
+planCtrl.getAll = async (req, res) => {
+    var planes = await Plan.find();
+    res.json(planes);
+}
+
 planCtrl.addPlan = async (req, res) => {
 
     var plan = new Plan(req.body);

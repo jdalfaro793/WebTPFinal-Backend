@@ -5,8 +5,10 @@ const authCtrl = require('../controllers/auth.controller');
 const express = require('express');
 const router = express.Router();
 //definimos las rutas para la gestion de agente
+
+router.get('/allPlans', planCtrl.getAll);
 router.get('/:id', planCtrl.getPlan);
-router.get('/', planCtrl.getPlanes);
+router.get('/',authCtrl.verifyToken, planCtrl.getPlanes);
 router.post('/', authCtrl.verifyToken, planCtrl.addPlan);
 router.delete('/:id', authCtrl.verifyToken, planCtrl.deletePlan);
 router.put('/:id', authCtrl.verifyToken, planCtrl.editPlan);
